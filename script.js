@@ -1,3 +1,8 @@
+//*** Variables ***//
+let cities = [];
+
+//*** API Requests ***//
+
 $("#find-city").on("click", function(event) {
   event.preventDefault();
 
@@ -21,13 +26,11 @@ $("#find-city").on("click", function(event) {
   })
 
   // Render the city names
-  // let city = $("#city-input").val();
   let cityCard = $("<div>").attr("class", "card");
   let cityCardBody = $("<div>").attr("class", "card-body").text(city);
   cityCard.append(cityCardBody);
   $("#city-list").prepend(cityCard);
 });
-
 
 function showMainWeather(response) {
   // Display main weather report
@@ -50,7 +53,7 @@ function showFiveDayWeather(response) {
   // Display 5-day weather report
 
   $("#five-day-deck").empty();
-  for (let i = 3; i < 43 ; i += 8) {
+  for (let i = 0; i < 40; i += 8) {
     let cardDate = response.list[i].dt_txt;
     let date = new Date(cardDate).toLocaleDateString('en-US', {
       day : 'numeric',
@@ -73,8 +76,3 @@ function showFiveDayWeather(response) {
     $("#five-day-deck").append(cardEl);
   }
 }
-// https://openweathermap.org/weather-conditions
-// https://openweathermap.org/forecast5
-// file:///C:/Users/songw/Documents/Boot%20Camp%20classwork/03%20Week/Homework%202/Assets/06-Server-Side-APIs-homework-demo.png
-// https://samples.openweathermap.org/data/2.5/forecast?zip=94040&appid=166a433c57516f51dfab1f7edaed8413
-// https://openweathermap.org/widgets-constructor
