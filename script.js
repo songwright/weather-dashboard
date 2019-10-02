@@ -39,7 +39,6 @@ function showMainWeather(response) {
 
 function showFiveDayWeather(response) {
   // Display 5-day weather report
-  // let temp = response.list[4].main.temp;
   console.log(response);
   $(".card-deck").empty();
   for (let i = 3; i < 43 ; i += 8) {
@@ -49,13 +48,13 @@ function showFiveDayWeather(response) {
       month : 'numeric',
       year : 'numeric'
     });
+    let cardTemp = Math.round(response.list[i].main.temp);
 
     let cardBodyEl = $("<div>").attr("class", "card-body");
     let cardEl = $("<div>").attr("class", "card");
-    // let cardTitleEl = $("<h5>").attr("class", "card-title").attr("id", `cardTitle${i}`);
     let cardTitleEl = $("<h5>").attr("class", "card-title").text(date);
-    let cardTempEl = $("<p>").attr("class", "card-text");
-    cardEl.append(cardBodyEl).append(cardTitleEl);
+    let cardTempEl = $("<p>").attr("class", "card-text").text(cardTemp + " °F");
+    cardEl.append(cardBodyEl).append(cardTitleEl).append(cardTempEl);
     $(".card-deck").append(cardEl);
 
 
