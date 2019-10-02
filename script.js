@@ -49,12 +49,16 @@ function showFiveDayWeather(response) {
       year : 'numeric'
     });
     let cardTemp = Math.round(response.list[i].main.temp);
+    let cardHumid = Math.round(response.list[i].main.humidity);
+    let iconSource = response.list[i].weather[0].icon;
 
     let cardBodyEl = $("<div>").attr("class", "card-body");
     let cardEl = $("<div>").attr("class", "card");
     let cardTitleEl = $("<h5>").attr("class", "card-title").text(date);
-    let cardTempEl = $("<p>").attr("class", "card-text").text(cardTemp + " °F");
-    cardEl.append(cardBodyEl).append(cardTitleEl).append(cardTempEl);
+    let cardIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${iconSource}.png`).attr("class", "img-fluid");
+    let cardTempEl = $("<p>").attr("class", "card-text").text(`Temp: ${cardTemp} °F`);
+    let cardHumidEl = $("<p>").attr("class", "card-text").text(`Humidity: ${cardHumid}%`);
+    cardEl.append(cardBodyEl).append(cardTitleEl).append(cardIcon).append(cardTempEl).append(cardHumidEl);
     $(".card-deck").append(cardEl);
 
 
