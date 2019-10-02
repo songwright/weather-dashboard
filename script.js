@@ -42,6 +42,11 @@ function showFiveDayWeather(response) {
   // let temp = response.list[4].main.temp;
   console.log(response);
   for (let i = 3; i < 43 ; i += 8) {
+    let cardBody = $("<div>").attr("class", "card-body").attr("id", `card${i}`);
+    let card = $("<div>").attr("class", "card");
+    card.append(cardBody);
+    $(".card-deck").append(card);
+
     console.log(i);
   }
 }
