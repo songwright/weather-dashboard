@@ -26,11 +26,32 @@ $("#find-city").on("click", function(event) {
   })
 
   // Render the city names
-  let cityCard = $("<div>").attr("class", "card");
-  let cityCardBody = $("<div>").attr("class", "card-body").text(city);
-  cityCard.append(cityCardBody);
-  $("#city-list").prepend(cityCard);
+  // let cityCard = $("<div>").attr("class", "card");
+  // let cityCardBody = $("<div>").attr("class", "card-body").text(city);
+  // cityCard.append(cityCardBody);
+  // $("#city-list").prepend(cityCard);
+
+  // Add city name to array.
+  cities.push(city);
+
+  saveCities();
+  renderCities();
 });
+
+function init() {
+  // Parsing the JSON stsring to an object
+  let storedCities = JSON.parse(localStorage.getItem("cities"));
+
+  // If high scores were retrieved from localStorage, update highScores array to it.
+  if (storedCities !== null) {
+    cities = storedCities;
+  }
+}
+
+function saveCities() {
+  // Save city names.
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
 
 function showMainWeather(response) {
   // Display main weather report
@@ -52,6 +73,7 @@ function showMainWeather(response) {
 function showFiveDayWeather(response) {
   // Display 5-day weather report
 
+  // Clear deck before updating
   $("#five-day-deck").empty();
   for (let i = 0; i < 40; i += 8) {
     let cardDate = response.list[i].dt_txt;
@@ -67,7 +89,6 @@ function showFiveDayWeather(response) {
     let cardEl = $("<div>").attr("class", "card");
     let cardBodyEl = $("<div>").attr("class", "card-body five-card");
     let cardTitleEl = $("<h5>").attr("class", "card-title").text(date);
-    // let cardIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${iconSource}.png`).attr("class", "img-fluid");
     let cardIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${iconSource}.png`);
     let cardTempEl = $("<p>").attr("class", "card-text").text(`Temp: ${cardTemp} °F`);
     let cardHumidEl = $("<p>").attr("class", "card-text").text(`Humidity: ${cardHumid}%`);
@@ -76,3 +97,19 @@ function showFiveDayWeather(response) {
     $("#five-day-deck").append(cardEl);
   }
 }
+
+function renderCities() {
+  // Clear city names element before updating.
+  $("#city-list").empty();
+
+  // Render city names
+  cities.forEach(city => {
+
+    let cityCard = $("<div>").attr("class", "card");
+    let cityCardBody = $("<div>").attr("class", "card-body").text(city);
+    cityCard.append(cityCardBody);
+    $("#city-list").prepend(cityCard);
+  })
+}
+
+init();
