@@ -6,8 +6,13 @@ let cities = [];
 $("#find-city").on("click", function(event) {
   event.preventDefault();
 
-  const APIKey = "166a433c57516f51dfab1f7edaed8413";
   let city = $("#city-input").val();
+  getAPIs(city);
+});
+
+function getAPIs(city) {
+  // Variables
+  const APIKey = "166a433c57516f51dfab1f7edaed8413";
   let fiveDayQueryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city},us&units=imperial&appid=${APIKey}`;
   let mainQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city},us&units=imperial&appid=${APIKey}`;
 
@@ -25,18 +30,12 @@ $("#find-city").on("click", function(event) {
     showMainWeather(response);
   })
 
-  // Render the city names
-  // let cityCard = $("<div>").attr("class", "card");
-  // let cityCardBody = $("<div>").attr("class", "card-body").text(city);
-  // cityCard.append(cityCardBody);
-  // $("#city-list").prepend(cityCard);
-
   // Add city name to array.
   cities.push(city);
 
   saveCities();
   renderCities();
-});
+};
 
 function init() {
   // Parsing the JSON stsring to an object
