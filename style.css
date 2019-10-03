@@ -4,6 +4,10 @@ header {
   padding: 20px;
 }
 
+input {
+  width: 150px;
+}
+
 .five-card {
   background: #003cffcf;
   color: white;
