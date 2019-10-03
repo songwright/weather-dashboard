@@ -17,6 +17,13 @@ $("#city-list").on("click", ".city", function(event) {
   getAPIs(city);
 });
 
+$("#clear-city-names").on("click", function() {
+  // Clear the city names array
+  cities = [];
+  saveCities();
+  renderCities();
+})
+
 function getAPIs(city) {
   // Variables
   const APIKey = "166a433c57516f51dfab1f7edaed8413";
@@ -38,7 +45,9 @@ function getAPIs(city) {
   })
 
   // Add city name to array.
-  cities.push(city);
+  if (cities.indexOf(city) === -1) {
+    cities.push(city);
+  }
 
   saveCities();
   renderCities();
