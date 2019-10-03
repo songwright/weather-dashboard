@@ -10,6 +10,13 @@ $("#find-city").on("click", function(event) {
   getAPIs(city);
 });
 
+$("#city-list").on("click", ".city", function(event) {
+  event.preventDefault();
+
+  let city = $(this).text();
+  getAPIs(city);
+});
+
 function getAPIs(city) {
   // Variables
   const APIKey = "166a433c57516f51dfab1f7edaed8413";
@@ -105,7 +112,7 @@ function renderCities() {
   cities.forEach(city => {
 
     let cityCard = $("<div>").attr("class", "card");
-    let cityCardBody = $("<div>").attr("class", "card-body").text(city);
+    let cityCardBody = $("<div>").attr("class", "card-body city").text(city);
     cityCard.append(cityCardBody);
     $("#city-list").prepend(cityCard);
   })
