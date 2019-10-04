@@ -17,6 +17,6 @@ input {
 
   .card-deck {
     flex-wrap: wrap;
-    flex-flow: column;
+    flex-direction: column;
   }
 }
