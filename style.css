@@ -12,3 +12,11 @@ input {
   background: #003cffcf;
   color: white;
 }
+
+@media only screen and (max-width: 960px) {
+
+  .card-deck {
+    flex-wrap: wrap;
+    flex-flow: column;
+  }
+}
