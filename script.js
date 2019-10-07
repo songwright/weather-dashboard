@@ -103,7 +103,7 @@ function showFiveDayWeather(response) {
 
     let cardEl = $("<div>").attr("class", "card");
     let cardBodyEl = $("<div>").attr("class", "card-body five-card");
-    let cardTitleEl = $("<h5>").attr("class", "card-title").text(date);
+    let cardTitleEl = $("<h6>").attr("class", "card-title").text(date);
     let cardIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${iconSource}.png`);
     let cardTempEl = $("<p>").attr("class", "card-text").text(`Temp: ${cardTemp} °F`);
     let cardHumidEl = $("<p>").attr("class", "card-text").text(`Humidity: ${cardHumid}%`);
