@@ -90,7 +90,7 @@ function showFiveDayWeather(response) {
 
   // Clear deck before updating
   $("#five-day-deck").empty();
-  for (let i = 0; i < 40; i += 8) {
+  for (let i = 6; i < 40; i += 8) {
     let cardDate = response.list[i].dt_txt;
     let date = new Date(cardDate).toLocaleDateString('en-US', {
       day : 'numeric',
